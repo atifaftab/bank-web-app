@@ -5,50 +5,6 @@ import useHttp from "../../hooks/use-http";
 import { getBalance, getTracHistory } from "../../services/auth";
 import Layout from "../../components/layout/Layout";
 
-// const objData = [
-//   {
-//     id: 1,
-//     updatedDate: "2023-05-22",
-//     type: "credit",
-//     amount: 700.0,
-//     balance: 200.0,
-//   },
-//   {
-//     id: 202,
-//     updatedDate: "2023-05-22",
-//     type: "CREDIT",
-//     amount: 50.0,
-//     balance: 850.0,
-//   },
-//   {
-//     id: 252,
-//     updatedDate: "2023-05-22",
-//     type: "CREDIT",
-//     amount: 50.0,
-//     balance: 900.0,
-//   },
-//   {
-//     id: 302,
-//     updatedDate: "2023-05-22",
-//     type: "CREDIT",
-//     amount: 50.0,
-//     balance: 950.0,
-//   },
-//   {
-//     id: 452,
-//     updatedDate: "2023-05-22",
-//     type: "DEBIT",
-//     amount: 50.0,
-//     balance: 750.0,
-//   },
-//   {
-//     id: 455,
-//     updatedDate: "2023-05-22",
-//     type: "DEBIT",
-//     amount: 749.0,
-//     balance: 1.0,
-//   },
-// ];
 const HomePage = () => {
   const authCtx = useContext(AuthContext);
 
@@ -68,7 +24,7 @@ const HomePage = () => {
   useEffect(() => {
     sendRequest(authCtx.userSessionId);
     tracHistorySendRequest(authCtx.userSessionId);
-  }, [sendRequest, tracHistorySendRequest]);
+  }, [authCtx.userSessionId, sendRequest, tracHistorySendRequest]);
 
   let balanceData;
 
@@ -121,7 +77,6 @@ const HomePage = () => {
                   <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                     Amount
                   </th>
-                  {/* <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br" /> */}
                 </tr>
               </thead>
               <tbody>

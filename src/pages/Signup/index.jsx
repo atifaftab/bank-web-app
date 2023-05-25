@@ -8,7 +8,6 @@ import { addUser } from "../../services/auth";
 import DropDown from "../../components/form/dropdown/DropDown";
 import { MyDatePicker } from "../../lib/DatePicker";
 import { getDateFormate } from "../../utils/GeneralConstant";
-// import { dropdown } from "../../components/form/"
 
 const isNotEmpty = (value) => value.trim() !== "";
 const isEmail = (value) => value.includes("@");
@@ -256,16 +255,6 @@ const SignUp = () => {
                 onError={firstDepositInputHasError}
                 invalidMsg={"please enter only numbers"}
               />
-              {/* <Input
-                id="accountType"
-                type="dropdown"
-                placeHolder="AccountType"
-                onChange={accountTypeInputChangeHandler}
-                onBlur={accountTypeInputBlurHandler}
-                value={enteredAccountType}
-                onError={accountTypeInputHasError}
-                // invalidMsg={"please enter your password"}
-              /> */}
               <DropDown
                 id="accountType"
                 placeHolder="Account Type"

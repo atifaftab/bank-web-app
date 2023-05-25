@@ -17,7 +17,7 @@ const Layout = (props) => {
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link to="/" className="flex items-center">
               <img
-                src="https://flowbite.com/docs/images/logo.svg"
+                src="http://localhost:3000/EGALogo.svg"	
                 className="mr-3 h-6 sm:h-9"
                 alt="epay Logo"
               />

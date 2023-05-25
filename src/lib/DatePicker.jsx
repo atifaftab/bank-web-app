@@ -1,7 +1,6 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import "./MyDatePicker.css";
 import getYear from "date-fns/getYear";
 import range from "lodash.range";
 

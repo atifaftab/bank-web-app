@@ -5,7 +5,7 @@ import AuthContext from "../../context/auth-context";
 import Input from "../../components/form/input/Input";
 import useHttp from "../../hooks/use-http";
 import useUserinput from "../../hooks/user-input";
-import { transactionDebit } from "../../services/auth";
+import { transactionCredit } from "../../services/auth";
 import Layout from "../../components/layout/Layout";
 
 const isDepositValue = (value) =>
@@ -18,14 +18,14 @@ const Deposit = () => {
     status,
     data: userAuth,
     error,
-  } = useHttp(transactionDebit);
+  } = useHttp(transactionCredit);
 
   useEffect(() => {
     if (status === "completed" && !error) {
       console.log("Deposit succesful");
     }
     if (status === "completed" && error) {
-      alert(error);
+      alert("why this error");
     }
   }, [status, error, userAuth]);
 
@@ -50,7 +50,8 @@ const Deposit = () => {
       return;
     }
 
-    sendRequest(authCtx.userSessionId, parseInt(enteredDeposit));
+    sendRequest({token: authCtx.userSessionId,
+      amount: parseInt(enteredDeposit)});
 
     resetDepositInput();
   };

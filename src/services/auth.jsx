@@ -72,22 +72,22 @@ export async function getBalance(token) {
   }
 
   return resData;
-}
+}``
 
-export async function transactionDebit(token, amount) {
+export async function transactionDebit(debitObject) {
   const URL = `${JAVA_SVC}transaction/debit`;
 
   const response = await fetch(URL, {
     method: "POST",
     body: JSON.stringify({
-      amount: amount,
+      amount: debitObject.amount,
     }),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${debitObject.token}`,
     },
   });
-
+  
   const data = await response.json();
   const resData = await data;
 
@@ -102,17 +102,17 @@ export async function transactionDebit(token, amount) {
   return resData;
 }
 
-export async function transactionCredit(token, amount) {
+export async function transactionCredit(creditObject) {
   const URL = `${JAVA_SVC}transaction/credit`;
 
   const response = await fetch(URL, {
     method: "POST",
     body: JSON.stringify({
-      amount: amount,
+      amount: creditObject.amount,
     }),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${creditObject.token}`,
     },
   });
 

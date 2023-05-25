@@ -1,6 +1,4 @@
 import { useReducer } from "react";
-// import { useState } from "react";
-
 const initialInputState = {
   value: "",
   isTouched: false,
@@ -22,8 +20,6 @@ const inputSateReducer = (state, action) => {
   return initialInputState;
 };
 const useUserinput = (validateValue) => {
-  // const [enteredValue, setEnteredValue] = useState("");
-  // const [isTouched, setIsTouched] = useState(false);
   const [inputState, dispatch] = useReducer(
     inputSateReducer,
     initialInputState
@@ -33,12 +29,10 @@ const useUserinput = (validateValue) => {
   const hasError = !valueIsValid && inputState.isTouched;
 
   const inputChangeHandler = (event) => {
-    // setEnteredValue(event.target.value);
     dispatch({ type: "INPUT", value: event.target.value });
   };
 
   const inputBlurHandler = () => {
-    // setIsTouched(true);
     dispatch({ type: "BLUR" });
   };
 
@@ -47,8 +41,6 @@ const useUserinput = (validateValue) => {
   };
 
   const reset = () => {
-    // setEnteredValue("");
-    // setIsTouched(false);
     dispatch({ type: "RESET" });
   };
   return {

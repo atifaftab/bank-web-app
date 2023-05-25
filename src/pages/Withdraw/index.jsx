@@ -5,7 +5,7 @@ import AuthContext from "../../context/auth-context";
 import Input from "../../components/form/input/Input";
 import useHttp from "../../hooks/use-http";
 import useUserinput from "../../hooks/user-input";
-import { transactionCredit } from "../../services/auth";
+import { transactionDebit } from "../../services/auth";
 import Layout from "../../components/layout/Layout";
 
 const isWithdrawValue = (value) =>
@@ -18,7 +18,8 @@ const Withdraw = () => {
     status,
     data: userAuth,
     error,
-  } = useHttp(transactionCredit);
+  } = useHttp(transactionDebit);
+
 
   useEffect(() => {
     if (status === "completed" && !error) {
@@ -50,7 +51,8 @@ const Withdraw = () => {
       return;
     }
 
-    sendRequest(authCtx.userSessionId, parseInt(enteredWithdraw));
+    sendRequest({token: authCtx.userSessionId,
+      amount: parseInt(enteredWithdraw)});
 
     resetWithdrawInput();
   };

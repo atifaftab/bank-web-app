@@ -5,7 +5,6 @@ import useHttp from "../../hooks/use-http";
 import { signInUser } from "../../services/auth";
 import { useContext, useEffect } from "react";
 import AuthContext from "../../context/auth-context";
-import { UserBuilder } from "../../utils/UserFormat";
 import Button from "../../components/ui/buttons/FormButton";
 
 const isNotEmpty = (value) => value.trim() !== "";
@@ -16,7 +15,6 @@ const SignIn = () => {
   const { sendRequest, status, data: userAuth, error } = useHttp(signInUser);
   useEffect(() => {
     if (status === "completed" && !error) {
-      // console.log(userAuth.access_token)
       authCtx.login(userAuth.access_token);
     }
     if (status === "completed" && error) {
@@ -58,8 +56,7 @@ const SignIn = () => {
 
     sendRequest({
       email: enteredEmail,
-      password: enteredPassword,
-      returnSecureToken: true,
+      password: enteredPassword
     });
 
     resetPasswordInput();
@@ -67,9 +64,7 @@ const SignIn = () => {
   };
   return (
     <section className="bg-[url('/src/assets/blob-scatter-haikei.svg')] bg-cover bg-no-repeat bg-center  min-h-screen flex items-center justify-center">
-      {/* login container */}
       <div className="p-5 flex max-w-7xl  items-center md:w-4/5">
-        {/* image */}
         <div className="md:block hidden w-1/2">
           <img
             className=" grayscale rounded-2xl mx-auto"
@@ -107,10 +102,6 @@ const SignIn = () => {
               LOGIN
             </Button>
           </form>
-
-          {/* <div className="mt-5 text-sm border-b border-[#002D74] py-4 text-[#002D74]">
-            <a href="#">Forgot your password?</a>
-          </div> */}
           <div className="mt-3 text-sm flex justify-between items-center text-[#002D74]">
             <p>Don&rsquo;t have an account?</p>
             <Link
