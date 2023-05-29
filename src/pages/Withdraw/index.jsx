@@ -82,7 +82,7 @@ const Withdraw = () => {
               />
 
               <Button ondisabled={!formIsValid} type="submit">
-                Proceed
+                Withdraw
               </Button>
             </form>
           </div>

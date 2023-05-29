@@ -81,7 +81,7 @@ const Deposit = () => {
               />
 
               <Button ondisabled={!formIsValid} type="submit">
-                Proceed
+              Deposit
               </Button>
             </form>
           </div>
