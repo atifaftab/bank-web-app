@@ -17,7 +17,7 @@ const App = () => {
     <Routes>
       {isLoggedIn && <Route path="/dashboard" element={<HomePage />} />}
       {isLoggedIn && (
-        <Route path="/transaction/deposite" element={<Deposit />} />
+        <Route path="/transaction/deposit" element={<Deposit />} />
       )}
       {isLoggedIn && (
         <Route path="/transaction/withdraw" element={<Withdraw />} />
