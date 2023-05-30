@@ -168,8 +168,6 @@ export async function getUserName(token) {
   });
 
   const data = await response.text();
-  // const resData = await JSON.stringify(data);
-  // JSON.stringify(resData);
 
   if (!response.ok) {
     let errorMessage;
