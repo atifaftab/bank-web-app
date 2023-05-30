@@ -143,6 +143,7 @@ const HomePage = () => {
           <div className="  lg:w-2/3 w-full mx-auto overflow-auto">
             <div className="bg-gray-100 rounded-2xl py-10 px-12 w-1/2">
               {userNames}
+              <br></br>
               <p className="leading-relaxed mb-2">Balance</p>
               {balanceData}
             </div>
