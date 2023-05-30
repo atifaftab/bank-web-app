@@ -72,7 +72,7 @@ export async function getBalance(token) {
   }
 
   return resData;
-}``
+}
 
 export async function transactionDebit(debitObject) {
   const URL = `${JAVA_SVC}transaction/debit`;
@@ -143,6 +143,33 @@ export async function getTracHistory(token) {
 
   const data = await response.json();
   const resData = await data;
+
+  if (!response.ok) {
+    let errorMessage;
+    if (data && data.error && data.error.message) {
+      errorMessage = data.error.message;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return resData;
+}
+
+
+export async function getUserName(token) {
+  const URL = `${JAVA_SVC}customer/userName`;
+
+  const response = await fetch(URL, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+  const resData = await JSON.stringify(data);
+  // JSON.stringify(resData);
 
   if (!response.ok) {
     let errorMessage;

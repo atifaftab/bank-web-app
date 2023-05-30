@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import AuthContext from "../../context/auth-context";
 
 import useHttp from "../../hooks/use-http";
-import { getBalance, getTracHistory } from "../../services/auth";
+import { getBalance, getTracHistory, getUserName } from "../../services/auth";
 import Layout from "../../components/layout/Layout";
 
 const HomePage = () => {
@@ -21,10 +21,18 @@ const HomePage = () => {
     error: tracHistoryerror,
   } = useHttp(getTracHistory, true);
 
+  const {
+    sendRequest: userNameSendRequest,
+    status: userNameStatus,
+    data: userNameData,
+    error: userNameerror,
+  } = useHttp(getUserName, true);
+
   useEffect(() => {
     sendRequest(authCtx.userSessionId);
     tracHistorySendRequest(authCtx.userSessionId);
-  }, [authCtx.userSessionId, sendRequest, tracHistorySendRequest]);
+    userNameSendRequest(authCtx.userSessionId);
+  }, [authCtx.userSessionId, sendRequest, tracHistorySendRequest, userNameSendRequest]);
 
   let balanceData;
 
@@ -34,6 +42,21 @@ const HomePage = () => {
         {`AED ${balance}`}
       </h2>
     );
+  }
+
+  let userNames;
+  if(userNameStatus === "completed"
+  && userNameData 
+  && userNameData.length>0){
+    userNames =(
+        <h2 className="title-font font-medium sm:text-4xl text-3xl text-gray-900">
+        {`${userNameData}`}
+      </h2>
+      )
+  }
+
+  if (userNameerror) {
+    userNames = <div className="centered focused">{userNameerror}</div>;
   }
 
   if (error) {
@@ -119,6 +142,7 @@ const HomePage = () => {
         <div className="container px-5 py-24 mx-auto">
           <div className="  lg:w-2/3 w-full mx-auto overflow-auto">
             <div className="bg-gray-100 rounded-2xl py-10 px-12 w-1/2">
+              {userNames}
               <p className="leading-relaxed mb-2">Balance</p>
               {balanceData}
             </div>
