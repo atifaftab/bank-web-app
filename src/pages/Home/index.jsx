@@ -32,7 +32,12 @@ const HomePage = () => {
     sendRequest(authCtx.userSessionId);
     tracHistorySendRequest(authCtx.userSessionId);
     userNameSendRequest(authCtx.userSessionId);
-  }, [authCtx.userSessionId, sendRequest, tracHistorySendRequest, userNameSendRequest]);
+  }, [
+    authCtx.userSessionId,
+    sendRequest,
+    tracHistorySendRequest,
+    userNameSendRequest,
+  ]);
 
   let balanceData;
 
@@ -45,14 +50,16 @@ const HomePage = () => {
   }
 
   let userNames;
-  if(userNameStatus === "completed"
-  && userNameData 
-  && userNameData.length>0){
-    userNames =(
-        <h2 className="title-font font-medium sm:text-4xl text-3xl text-gray-900">
+  if (
+    userNameStatus === "completed" &&
+    userNameData &&
+    userNameData.length > 0
+  ) {
+    userNames = (
+      <h2 className="title-font font-medium sm:text-4xl text-3xl text-gray-900">
         {`${userNameData}`}
       </h2>
-      )
+    );
   }
 
   if (userNameerror) {
